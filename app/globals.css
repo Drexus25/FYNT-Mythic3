@@ -11,7 +11,14 @@
   --color-coin: #f2b705;
   --color-danger: #b42318;
   --color-warning: #7a5b00;
-  --font-display: var(--font-display), ui-sans-serif, sans-serif;
-  --font-body: var(--font-body), ui-sans-serif, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, sans-serif;
+  --font-rethink-sans: var(--font-rethink-sans), ui-sans-serif, sans-serif;
   --shadow-feature: 6px 6px 0 #14213d;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-inter), ui-sans-serif, sans-serif;
+  }
 }
