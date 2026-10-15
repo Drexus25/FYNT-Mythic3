@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import LogoFYNT from "@/public/shared/logo-fynt-clean.svg"
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -23,7 +25,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 flex justify-center transition-all duration-500 ease-in-out"
+    <header className="fixed top-0 z-50 flex w-full justify-center transition-all duration-500 ease-in-out"
       style={{ paddingTop: scrolled ? "0px" : "20px" }}
     >
       <div
@@ -37,9 +39,10 @@ export default function Navbar() {
       <nav className="mx-auto flex items-center justify-between px-8 py-4">
         <Link
           href="/"
-          className="text-3xl font-black tracking-tight text-ink transition-opacity hover:opacity-80"
+          className="flex flex-row justify-center items-center gap-2 text-3xl font-black tracking-tight text-ink transition-opacity hover:opacity-80"
         >
-          FYNT
+          <Image src={LogoFYNT} alt="FYNT" width={30} height={30} />
+          <span className="font-rethink-sans">FYNT</span>
         </Link>
 
         <ul className="hidden items-center gap-4 md:flex">
