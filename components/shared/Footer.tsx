@@ -1,9 +1,19 @@
+"use client";
+
 import Image from "next/image";
-import LogoFYNT from "@/public/shared/logo-fynt-clean.svg"
+import { usePathname } from "next/navigation";
+import LogoFYNT from "@/public/shared/logo-fynt-clean.svg";
 
 export default function Footer() {
-    return(
-        <div className="flex flex-col gap-12 px-12 py-6 border-t border-line">
+    const pathname = usePathname();
+    const isHidden = pathname?.startsWith("/login") || pathname?.startsWith("/register");
+
+    if (isHidden) {
+        return null;
+    }
+
+    return (
+        <footer className="flex flex-col gap-12 px-12 py-6 border-t border-line">
             <div className="flex flex-row justify-center items-center gap-12">
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-row gap-4">
@@ -35,6 +45,6 @@ export default function Footer() {
             <div className="flex flex-row justify-center items-center text-center">
                 <p className="text-[14px] text-ink-soft">© 2026 FYNT. Semua hak dilindungi.</p>
             </div>
-        </div>
-    )
+        </footer>
+    );
 }
