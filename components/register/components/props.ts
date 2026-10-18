@@ -35,6 +35,7 @@ export interface FormFieldConfig {
     isOptional?: boolean;
     isPassword?: boolean;
     fieldDescription?: string;
+    colSpan?: 1 | 2;
 }
 
 export interface RegistrationFormProps {

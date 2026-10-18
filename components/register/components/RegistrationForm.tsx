@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import FormTemplate from "./FormTemplate";
+import FormTemplate from "../../shared/FormTemplate";
 import { LuUserRoundSearch } from "react-icons/lu";
 import { FaArrowRight, FaRegBuilding, FaRegCircle, FaRegCheckCircle  } from "react-icons/fa";
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FiEye, FiEyeOff, FiChevronDown } from "react-icons/fi";
-import { FormFieldConfig, RegistrationFormProps } from "./props";
+import { FormFieldConfig, RegistrationFormProps } from "../register/components/props";
 
 // ─── Single field renderer ────────────────────────────────────────────────────
 
@@ -149,10 +149,11 @@ export default function FormTemplate({
                 <div className="grid grid-cols-2 gap-4">
                     {fields.map((field, i) => {
                         const isLastAndAlone = isOdd && i === fields.length - 1;
+                        const isSpanTwo = field.colSpan === 2 || isLastAndAlone;
                         return (
                             <div
                                 key={i}
-                                className={isLastAndAlone ? "col-span-2" : "col-span-1"}
+                                className={isSpanTwo ? "col-span-2" : "col-span-1"}
                             >
                                 <FormField
                                     field={field}
