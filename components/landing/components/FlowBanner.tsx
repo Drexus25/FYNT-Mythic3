@@ -1,4 +1,5 @@
 import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
 
 export default function FlowBanner() {
     return (
@@ -52,12 +53,12 @@ export default function FlowBanner() {
                     <p className="text-[14px] text-line">Mulai perjalanan karier atau bangun tim berikutnya bersama FYNT.</p>
                 </div>
                 <div className="flex flex-row gap-4">
-                    <div className="p-4 bg-white rounded-lg cursor-pointer hover:bg-line transition-all duration-300">
+                    <Link href="/register/seeker" className="p-4 bg-white rounded-lg cursor-pointer hover:bg-line transition-all duration-300">
                         <p className="font-semibold">Daftar Gratis</p>
-                    </div>
-                    <div className="p-4 border border-line text-white flex flex-row justify-center items-center gap-2 rounded-lg cursor-pointer hover:bg-white hover:text-teal transition-all duration-300">
+                    </Link>
+                    <Link href="/register/recruiter" className="p-4 border border-line text-white flex flex-row justify-center items-center gap-2 rounded-lg cursor-pointer hover:bg-white hover:text-teal transition-all duration-300">
                         <p className="">Saya ingin merekrut</p><FaArrowRight />
-                    </div>
+                    </Link>
                 </div>
             </div>
         </section>

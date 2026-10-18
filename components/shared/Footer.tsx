@@ -3,7 +3,7 @@ import LogoFYNT from "@/public/shared/logo-fynt-clean.svg"
 
 export default function Footer() {
     return(
-        <div className="flex flex-col gap-12 px-12 py-6">
+        <div className="flex flex-col gap-12 px-12 py-6 border-t border-line">
             <div className="flex flex-row justify-center items-center gap-12">
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-row gap-4">
