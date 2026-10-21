@@ -1,10 +1,24 @@
+"use client";
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { BsStars } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { FaExclamationCircle } from "react-icons/fa";
 
 export default function HeroSection() {
     const [query, setQuery] = useState("");
+    const router = useRouter();
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        const trimmed = query.trim();
+        if (trimmed) {
+            router.push(`/find?q=${encodeURIComponent(trimmed)}`);
+        } else {
+            router.push("/find");
+        }
+    };
 
     return (
         <section className="relative overflow-hidden min-h-screen flex flex-col justify-center items-center px-4 text-center">
@@ -42,7 +56,7 @@ export default function HeroSection() {
             {/* Search bar */}
             <form
             id="hero-search-form"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSearch}
             className="flex items-center w-full max-w-2xl mx-auto bg-white border border-line rounded-2xl overflow-hidden focus-within:border-teal/50 transition-colors"
             >
             {/* Search icon */}
