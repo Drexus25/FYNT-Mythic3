@@ -1,3 +1,4 @@
+import Link from "next/link";
 import JobCarousel from "@/components/shared/JobCarousel";
 import { HIGHLIGHTED_JOBS } from "../data/data";
 import { FaArrowRight } from "react-icons/fa";
@@ -10,10 +11,13 @@ export default function HighlightedJob() {
           <p className="text-[28px] font-semibold">Lowongan Unggulan</p>
           <p className="text-[14px] text-ink-soft">Temukan peluang terbaik yang paling sesuai dengan keahlian dan minat Anda.</p>
         </div>
-        <div className="py-4 px-4 flex flex-row justify-center items-center gap-2 rounded-md border border-line cursor-pointer hover:bg-line/60 transition-all duration-300">
+        <Link 
+          href="/find"
+          className="py-4 px-4 flex flex-row justify-center items-center gap-2 rounded-md border border-line cursor-pointer hover:bg-line/60 transition-all duration-300"
+        >
           <FaArrowRight className="text-teal" />
           <p className="font-semibold">Lihat Semua Lowongan</p>
-        </div>
+        </Link>
       </div>
 
       <JobCarousel jobs={HIGHLIGHTED_JOBS} />
