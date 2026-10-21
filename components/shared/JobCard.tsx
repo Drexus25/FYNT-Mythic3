@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TbHexagonLetterF } from "react-icons/tb";
 
 export interface JobCardProps {
@@ -13,6 +14,7 @@ export interface JobCardProps {
   slotsTotal: number;
   coinCost: number;
   closingDate: string;
+  slug?: string;
 }
 
 export default function JobCard({
@@ -27,9 +29,10 @@ export default function JobCard({
   slotsTotal,
   coinCost,
   closingDate,
+  slug,
 }: JobCardProps) {
-  return (
-    <div className="flex flex-col w-full h-full gap-4 p-5 bg-white border border-line rounded-3xl cursor-pointer hover:scale-102 hover:shadow-lg transition-all duration-300">
+  const cardContent = (
+    <div className="flex flex-col w-full h-full gap-4 p-5 bg-white border border-line rounded-3xl cursor-pointer hover:scale-[1.02] hover:shadow-lg transition-all duration-300">
       <div className="flex flex-row items-center gap-3">
         <div
           className={`${logoColor} rounded-md w-10 h-10 flex items-center justify-center text-center text-white font-bold text-sm shrink-0`}
@@ -61,4 +64,10 @@ export default function JobCard({
       </div>
     </div>
   );
+
+  if (slug) {
+    return <Link href={`/job/${slug}`}>{cardContent}</Link>;
+  }
+
+  return cardContent;
 }

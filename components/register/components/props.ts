@@ -1,3 +1,5 @@
+
+
 export interface BenefitsBoxProps {
     title?: string;
     description?: string;
@@ -28,6 +30,7 @@ export const BenefitsBoxSeeker: BenefitsBoxProps = {
 // ─── RegistrationForm types ───────────────────────────────────────────────────
 
 export interface FormFieldConfig {
+    name?: string;
     label: string;
     placeholder?: string;
     isDropdown?: boolean;
@@ -43,33 +46,41 @@ export interface RegistrationFormProps {
     formDescription?: string;
     fields?: FormFieldConfig[];
     submitLabel?: string;
-    onSubmit?: (data: Record<string, string>) => void;
+    /** Key that maps to a Zod schema inside FormTemplate — safe to pass across the Server/Client boundary */
+    schemaKey?: "login" | "seeker-register" | "recruiter-register";
+    onSubmit?: (data: Record<string, unknown>) => void | Promise<void>;
 }
 
 export const SeekerFormFields: FormFieldConfig[] = [
     {
+        name: "firstName",
         label: "Nama Depan",
         placeholder: "Masukkan nama depan",
     },
     {
+        name: "lastName",
         label: "Nama Belakang",
         placeholder: "Masukkan nama belakang",
     },
     {
+        name: "email",
         label: "Email",
         placeholder: "Masukkan alamat email",
     },
     {
+        name: "phoneNumber",
         label: "No. Telepon",
         placeholder: "Contoh: +62 812 3456 7890",
         isOptional: true,
     },
     {
+        name: "password",
         label: "Kata Sandi",
         placeholder: "Masukkan kata sandi",
         isPassword: true,
     },
     {
+        name: "confirmPassword",
         label: "Konfirmasi Kata Sandi",
         placeholder: "Ulangi kata sandi",
         isPassword: true,
@@ -78,10 +89,12 @@ export const SeekerFormFields: FormFieldConfig[] = [
 
 export const RecruiterFormFields: FormFieldConfig[] = [
     {
+        name: "companyName",
         label: "Nama Perusahaan",
         placeholder: "Masukkan nama perusahaan",
     },
     {
+        name: "industry",
         label: "Bidang Industri",
         isDropdown: true,
         options: [
@@ -91,50 +104,61 @@ export const RecruiterFormFields: FormFieldConfig[] = [
         ],
     },
     {
+        name: "city",
         label: "Kota / Kabupaten",
         placeholder: "Masukkan kota atau kabupaten",
     },
     {
+        name: "website",
         label: "Website Perusahaan",
         placeholder: "https://perusahaan.com",
         isOptional: true,
     },
     {
+        name: "address",
         label: "Alamat Perusahaan",
         placeholder: "Masukkan alamat lengkap perusahaan",
     },
     {
+        name: "picName",
         label: "Nama Lengkap Penanggung Jawab",
         placeholder: "Masukkan nama lengkap",
     },
     {
+        name: "companyEmail",
         label: "Email Perusahaan",
         placeholder: "Masukkan email perusahaan",
     },
     {
+        name: "phoneNumber",
         label: "Nomor Telepon",
         placeholder: "Contoh: +62 812 3456 7890",
     },
     {
+        name: "password",
         label: "Password",
         placeholder: "Masukkan password",
         isPassword: true,
     },
     {
+        name: "confirmPassword",
         label: "Konfirmasi Password",
         placeholder: "Ulangi password",
         isPassword: true,
     },
-]
+];
 
 export const SeekerFormProps: RegistrationFormProps = {
     formTitle: "Data Diri",
     fields: SeekerFormFields,
+    schemaKey: "seeker-register",
 };
 
 export const RecruiterFormProps: RegistrationFormProps = {
     formTitle: "Data Perusahaan",
     fields: RecruiterFormFields,
+    schemaKey: "recruiter-register",
 };
+
 
 
