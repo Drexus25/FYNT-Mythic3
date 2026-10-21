@@ -2,11 +2,13 @@ import { FormFieldConfig, RegistrationFormProps } from "@/components/register/co
 
 export const LoginFormFields: FormFieldConfig[] = [
     {
+        name: "email",
         label: "Email",
         placeholder: "Masukkan email kamu",
         colSpan: 2,
     },
     {
+        name: "password",
         label: "Kata Sandi",
         placeholder: "Masukkan kata sandi",
         isPassword: true,
@@ -17,4 +19,6 @@ export const LoginFormFields: FormFieldConfig[] = [
 export const LoginFormProps: RegistrationFormProps = {
     fields: LoginFormFields,
     submitLabel: "Masuk",
+    schemaKey: "login",
 };
+

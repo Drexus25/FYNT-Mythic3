@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import FormTemplate from "../../shared/FormTemplate";
 import { LuUserRoundSearch } from "react-icons/lu";
-import { FaArrowRight, FaRegBuilding, FaRegCircle, FaRegCheckCircle  } from "react-icons/fa";
+import { FaRegBuilding, FaRegCircle, FaRegCheckCircle } from "react-icons/fa";
 
 import { RegistrationFormProps } from "./props";
 
