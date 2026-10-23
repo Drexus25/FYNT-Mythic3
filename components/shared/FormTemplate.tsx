@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiEye, FiEyeOff, FiChevronDown } from "react-icons/fi";
 import { FormFieldConfig, RegistrationFormProps } from "../register/components/props";
 import { loginSchema, seekerRegisterSchema, recruiterRegisterSchema } from "@/schemas";
@@ -130,17 +130,25 @@ export default function FormTemplate({
     fields = [],
     submitLabel = "Daftar",
     schemaKey,
+    defaultValues,
     onSubmit,
 }: RegistrationFormProps) {
     const getFieldKey = (field: FormFieldConfig, index: number) => {
         return field.name ?? field.label ?? `field_${index}`;
     };
 
-    const [values, setValues] = useState<Record<string, string>>(() =>
-        Object.fromEntries(fields.map((f, i) => [getFieldKey(f, i), ""]))
-    );
+    const [values, setValues] = useState<Record<string, string>>(() => ({
+        ...Object.fromEntries(fields.map((f, i) => [getFieldKey(f, i), ""])),
+        ...(defaultValues || {}),
+    }));
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        if (defaultValues) {
+            setValues((prev) => ({ ...prev, ...defaultValues }));
+        }
+    }, [defaultValues]);
 
     const handleChange = (key: string, value: string) => {
         setValues((prev) => ({ ...prev, [key]: value }));

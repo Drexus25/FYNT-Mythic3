@@ -48,6 +48,7 @@ export interface RegistrationFormProps {
     submitLabel?: string;
     /** Key that maps to a Zod schema inside FormTemplate — safe to pass across the Server/Client boundary */
     schemaKey?: "login" | "seeker-register" | "recruiter-register";
+    defaultValues?: Record<string, string>;
     onSubmit?: (data: Record<string, unknown>) => void | Promise<void>;
 }
 

@@ -1,4 +1,4 @@
-import JobDetailContainer from "@/components/job/container/JobDetailContainer";
+import JobDetailContainer from "@/components/job/detail/container/JobDetailContainer";
 import { DUMMY_JOBS } from "@/components/find/data/data";
 import type { Metadata } from "next";
 

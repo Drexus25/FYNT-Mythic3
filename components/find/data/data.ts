@@ -109,7 +109,7 @@ export const DUMMY_JOBS: JobItem[] = [
     tags: ["Full-time", "Mid level", "React"],
     slotsfilled: 14,
     slotsTotal: 20,
-    coinCost: 2,
+    coinCost: 1,
     closingDate: "30 Okt 2026",
     postedAt: "3 hari lalu",
     // Detail
@@ -177,7 +177,7 @@ export const DUMMY_JOBS: JobItem[] = [
     tags: ["Full-time", "Mid level", "SQL"],
     slotsfilled: 9,
     slotsTotal: 15,
-    coinCost: 2,
+    coinCost: 1,
     closingDate: "29 Okt 2026",
     postedAt: "4 hari lalu",
     // Detail
