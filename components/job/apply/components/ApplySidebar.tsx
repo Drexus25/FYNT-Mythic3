@@ -1,7 +1,6 @@
 "use client";
 
 import { JobItem } from "@/components/find/data/data";
-import { FiFileText } from "react-icons/fi";
 
 interface ApplySidebarProps {
   job: JobItem;

@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from "react";
+
 export type UserRole = "recruiter" | "seeker";
 
 export interface User {
@@ -73,4 +75,43 @@ export function logoutUser(): void {
   } catch {
     // ignore
   }
+}
+
+let cachedRaw: string | null = null;
+let cachedUser: User | null = null;
+
+function subscribeAuth(callback: () => void): () => void {
+  if (typeof window === "undefined") return () => {};
+  window.addEventListener("fynt_auth_change", callback);
+  window.addEventListener("storage", callback);
+  return () => {
+    window.removeEventListener("fynt_auth_change", callback);
+    window.removeEventListener("storage", callback);
+  };
+}
+
+function getAuthSnapshot(): User | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+    if (raw !== cachedRaw) {
+      cachedRaw = raw;
+      cachedUser = raw ? JSON.parse(raw) : null;
+    }
+    return cachedUser;
+  } catch {
+    return null;
+  }
+}
+
+function getAuthServerSnapshot(): User | null {
+  return null;
+}
+
+/**
+ * React hook to access current authenticated user.
+ * Subscribes directly to local storage / auth events without triggering cascading effect renders.
+ */
+export function useCurrentUser(): User | null {
+  return useSyncExternalStore(subscribeAuth, getAuthSnapshot, getAuthServerSnapshot);
 }

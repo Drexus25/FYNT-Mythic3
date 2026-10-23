@@ -53,6 +53,7 @@ export default function EssaySection({
             <textarea
               id={`essay-question-${q.id}`}
               rows={4}
+              value={answers[q.id] || ""}
               onChange={(e) => onAnswerChange(q.id, e.target.value)}
               placeholder="Tuliskan jawabanmu secara jelas dan ringkas..."
               className="w-full p-3.5 rounded-xl border border-line text-ink text-xs sm:text-sm placeholder:text-ink-muted/50 focus:border-teal focus:ring-1 focus:ring-teal outline-none leading-relaxed transition-all resize-y min-h-[110px]"
