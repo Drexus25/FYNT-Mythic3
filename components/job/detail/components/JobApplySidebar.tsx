@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { TbHexagonLetterF } from "react-icons/tb";
 import { FiArrowUpRight } from "react-icons/fi";
 import { JobItem } from "@/components/find/data/data";
@@ -21,7 +22,6 @@ export default function JobApplySidebar({
       <div className="bg-white border border-line rounded-2xl p-5 flex flex-col gap-4">
         <div className="flex flex-col gap-1">
           <h3 className="text-sm font-semibold text-ink">Siap mengambil langkah?</h3>
-          <p className="text-xs text-ink-muted">Periksa biaya sebelum melamar.</p>
         </div>
 
         {/* Coin cost badge */}
@@ -31,10 +31,6 @@ export default function JobApplySidebar({
             {job.coinCost} koin untuk melamar
           </span>
         </div>
-
-        <p className="text-xs text-ink-muted leading-relaxed">
-          Biaya ini ditetapkan oleh {job.company} untuk lowongan {job.title}.
-        </p>
 
         {/* Cost breakdown */}
         <div className="flex flex-col gap-2 text-xs border-t border-line pt-3">
@@ -55,15 +51,26 @@ export default function JobApplySidebar({
         </div>
 
         {/* Apply button */}
-        <button
-          id="job-apply-btn"
-          type="button"
-          disabled={remaining < 0}
-          className="w-full flex items-center justify-center gap-2 bg-teal hover:bg-teal-dark active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-semibold px-6 py-3 rounded-xl transition-all"
-        >
-          <FiArrowUpRight className="w-4 h-4" />
-          Melamar sekarang
-        </button>
+        {remaining < 0 ? (
+          <button
+            id="job-apply-btn"
+            type="button"
+            disabled
+            className="w-full flex items-center justify-center gap-2 bg-teal opacity-50 cursor-not-allowed text-white text-sm font-semibold px-6 py-3 rounded-xl transition-all"
+          >
+            <FiArrowUpRight className="w-4 h-4" />
+            Melamar sekarang
+          </button>
+        ) : (
+          <Link
+            id="job-apply-btn"
+            href={`/job/${job.slug}/apply-form`}
+            className="w-full flex items-center justify-center gap-2 bg-teal hover:bg-teal-dark active:scale-[0.98] text-white text-sm font-semibold px-6 py-3 rounded-xl transition-all"
+          >
+            <FiArrowUpRight className="w-4 h-4" />
+            Melamar sekarang
+          </Link>
+        )}
 
         <p className="text-[11px] text-ink-muted leading-relaxed text-center">
           Koin baru dipotong setelah kamu mengonfirmasi dan mengirim formulir lamaran.
@@ -73,15 +80,6 @@ export default function JobApplySidebar({
       {/* Company info card */}
       <div className="bg-white border border-line rounded-2xl p-5 flex flex-col gap-4">
         <h3 className="text-sm font-semibold text-ink">Tentang {job.company}</h3>
-
-        {job.isVerified && (
-          <div className="flex items-center gap-1.5 text-xs text-teal">
-            <div className="w-4 h-4 rounded-full bg-teal/10 flex items-center justify-center">
-              <span className="text-teal text-[10px]">✓</span>
-            </div>
-            Perusahaan terverifikasi
-          </div>
-        )}
 
         <p className="text-xs text-ink-muted leading-relaxed">
           {job.companyDescription}

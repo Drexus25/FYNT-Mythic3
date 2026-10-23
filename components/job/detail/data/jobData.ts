@@ -86,7 +86,7 @@ export const DUMMY_JOB_DETAILS: JobDetailItem[] = [
     salary: "Rp9–14 juta / bulan",
     postedAt: "8 Oktober 2026",
     closingDate: "8 November 2026",
-    coinCost: 2,
+    coinCost: 1,
     slotsfilled: 14,
     slotsTotal: 20,
     description: `<p>Akar Digital adalah perusahaan teknologi yang fokus pada pengembangan produk web berkualitas tinggi. Kami sedang mencari Frontend Developer yang bersemangat dalam membangun antarmuka yang cepat, aksesibel, dan estetis.</p><p>Kamu akan bekerja bersama tim desain dan backend untuk mewujudkan produk digital yang berdampak nyata bagi pengguna.</p><h3>Yang akan kamu kerjakan</h3><ul><li>Mengembangkan komponen UI yang reusable menggunakan React dan TypeScript.</li><li>Memastikan performa, aksesibilitas, dan kompatibilitas lintas browser.</li><li>Berkolaborasi dengan tim desain untuk mengimplementasikan desain secara pixel-perfect.</li><li>Melakukan code review dan menjaga standar kualitas kode.</li></ul><h3>Kualifikasi</h3><ul><li>Pengalaman 2–4 tahun dalam pengembangan frontend dengan React.</li><li>Menguasai TypeScript, CSS modern, dan tooling seperti Vite atau Next.js.</li><li>Memahami prinsip aksesibilitas web (WCAG).</li><li>Berpengalaman menggunakan Git dan workflow kolaborasi tim.</li></ul>`,

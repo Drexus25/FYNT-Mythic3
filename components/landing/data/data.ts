@@ -40,7 +40,7 @@ export const HIGHLIGHTED_JOBS: JobCardProps[] = [
     logoColor: "bg-teal",
     slotsfilled: 8,
     slotsTotal: 10,
-    coinCost: 2,
+    coinCost: 1,
     closingDate: "25 Okt 2026",
   },
   {
@@ -54,7 +54,7 @@ export const HIGHLIGHTED_JOBS: JobCardProps[] = [
     logoColor: "bg-amber-500",
     slotsfilled: 3,
     slotsTotal: 15,
-    coinCost: 2,
+    coinCost: 1,
     closingDate: "1 Nov 2026",
   },
   {
