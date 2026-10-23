@@ -56,7 +56,7 @@ export const COMPANY_JOBS_DATA: CompanyJob[] = [
     applicantsCount: 12,
     activePeriod: "10 Okt – 10 Nov 2026",
     actionText: "Lihat pelamar",
-    actionHref: "/recruiter/dashboard/jobs/product-designer",
+    actionHref: "/recruiter/job/product-designer",
   },
   {
     id: "job-2",
@@ -67,7 +67,7 @@ export const COMPANY_JOBS_DATA: CompanyJob[] = [
     applicantsCount: 15,
     activePeriod: "2 Okt – 2 Nov 2026",
     actionText: "Lihat pelamar",
-    actionHref: "/recruiter/dashboard/jobs/inovation-officer",
+    actionHref: "/recruiter/job/inovation-officer",
   },
   {
     id: "job-3",
