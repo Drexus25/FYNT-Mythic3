@@ -183,7 +183,7 @@ export default function Navbar() {
                         className="w-full flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-red-600 hover:bg-red-50 rounded-xl transition-colors cursor-pointer text-left"
                       >
                         <FiLogOut className="text-[16px]" />
-                        <span>Keluar (Log out)</span>
+                        <span>Log out</span>
                       </button>
                     </div>
                   </div>

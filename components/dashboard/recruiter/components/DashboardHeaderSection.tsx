@@ -12,7 +12,7 @@ export default function DashboardHeaderSection({
   onOpenNewJob,
 }: DashboardHeaderSectionProps) {
   return (
-    <div className="flex flex-col gap-5 w-full">
+    <div className="flex flex-col gap-5 w-full pt-8">
       {/* Breadcrumb */}
       <div className="text-[13px] text-ink-muted">
         <span>Perusahaan</span>

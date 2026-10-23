@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FiEye, FiEyeOff, FiChevronDown } from "react-icons/fi";
 import { FormFieldConfig, RegistrationFormProps } from "../register/components/props";
 import { loginSchema, seekerRegisterSchema, recruiterRegisterSchema } from "@/schemas";
@@ -144,11 +144,13 @@ export default function FormTemplate({
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    useEffect(() => {
+    const [prevDefaultValues, setPrevDefaultValues] = useState(defaultValues);
+    if (defaultValues !== prevDefaultValues) {
+        setPrevDefaultValues(defaultValues);
         if (defaultValues) {
             setValues((prev) => ({ ...prev, ...defaultValues }));
         }
-    }, [defaultValues]);
+    }
 
     const handleChange = (key: string, value: string) => {
         setValues((prev) => ({ ...prev, [key]: value }));

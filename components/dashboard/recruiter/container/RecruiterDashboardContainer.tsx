@@ -1,35 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import DashboardHeaderSection from "../components/DashboardHeaderSection";
-import DashboardMetricsSection from "../components/DashboardMetricsSection";
-import CompanyJobsSection from "../components/CompanyJobsSection";
+import DashboardHeaderSection from "../../../dashboard/recruiter/components/DashboardHeaderSection";
+import DashboardMetricsSection from "../../../dashboard/recruiter/components/DashboardMetricsSection";
+import CompanyJobsSection from "../../../dashboard/recruiter/components/CompanyJobsSection";
 import {
   RECRUITER_METRICS_DATA,
   COMPANY_JOBS_DATA,
 } from "../data/recruiterDashboardData";
-import { getCurrentUser, User, DUMMY_USERS } from "@/data/users";
+import { useCurrentUser, DUMMY_USERS } from "@/data/users";
 
 export default function RecruiterDashboardContainer() {
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
-    const current = getCurrentUser();
-    if (current && current.role === "recruiter") {
-      setUser(current);
-    } else if (current && current.role === "seeker") {
+    if (currentUser && currentUser.role === "seeker") {
       router.replace("/dashboard");
-    } else {
-      const defaultRecruiter =
-        DUMMY_USERS.find((u) => u.role === "recruiter") || null;
-      setUser(defaultRecruiter);
     }
-  }, [router]);
+  }, [currentUser, router]);
+
+  const user =
+    currentUser && currentUser.role === "recruiter"
+      ? currentUser
+      : DUMMY_USERS.find((u) => u.role === "recruiter") || null;
 
   const handleOpenNewJob = () => {
-    alert("Formulir pembukaan lowongan baru akan segera tersedia!");
+    router.push("/recruiter/create-application");
   };
 
   const companyName = user?.company || "Nusa Studio";
