@@ -12,9 +12,9 @@ export default function ApplicantsPageHeader({
   company,
 }: ApplicantsPageHeaderProps) {
   return (
-    <section className="flex flex-col gap-3 pt-6 pb-2">
+    <section className="flex flex-col gap-6 pt-8 pb-2">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="text-xs text-ink-muted">
+      <nav aria-label="Breadcrumb" className="text-[13px] text-ink-muted">
         <Link href="/recruiter/dashboard" className="hover:text-teal transition-colors">
           Perusahaan
         </Link>

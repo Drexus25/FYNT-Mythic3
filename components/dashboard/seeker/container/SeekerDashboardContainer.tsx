@@ -29,7 +29,7 @@ export default function SeekerDashboardContainer() {
   const selectedApplication =
     applications.find((app) => app.id === selectedAppId) || applications[0];
 
-  const userName = user?.name?.split(" ")[0] || "Ayu";
+  const userName = user?.name?.split(" ")[0];
 
   return (
     <div className="w-full min-h-screen bg-paper pt-24 pb-16">

@@ -34,7 +34,7 @@ export default function RecruiterDashboardContainer() {
 
   return (
     <div className="min-h-screen bg-[#FBFDFD] pt-24 pb-16 px-6 lg:px-14">
-      <div className="max-w-[1140px] mx-auto flex flex-col gap-7">
+      <div className="max-w-6xl mx-auto flex flex-col gap-7">
         {/* Header Section */}
         <DashboardHeaderSection
           companyName={companyName}

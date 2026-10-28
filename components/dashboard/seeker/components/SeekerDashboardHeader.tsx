@@ -5,7 +5,7 @@ interface SeekerDashboardHeaderProps {
 }
 
 export default function SeekerDashboardHeader({
-  userName = "Ayu",
+  userName,
 }: SeekerDashboardHeaderProps) {
   return (
     <section className="flex flex-col gap-2 pt-8">

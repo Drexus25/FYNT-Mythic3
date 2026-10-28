@@ -23,7 +23,7 @@ export default function DashboardHeaderSection({
       {/* Main Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <h1 className="font-rethink-sans font-bold text-2xl sm:text-3xl lg:text-[32px] text-ink leading-tight tracking-tight">
+          <h1 className="font-rethink-sans font-semibold text-2xl sm:text-3xl lg:text-[32px]  text-ink">
             Selamat datang, {companyName}.
           </h1>
           <p className="text-[14px] text-ink-muted">

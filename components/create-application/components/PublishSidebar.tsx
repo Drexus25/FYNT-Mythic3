@@ -9,6 +9,7 @@ interface PublishSidebarProps {
   availableCoins?: number;
   coinCost?: number;
   durationMonths: number;
+  additionalWeeks?: number;
   hasAgreed: boolean;
   onToggleAgree: () => void;
   onPublish: () => void;
@@ -23,6 +24,7 @@ export default function PublishSidebar({
   availableCoins = 5,
   coinCost = 5,
   durationMonths,
+  additionalWeeks = 1,
   hasAgreed,
   onToggleAgree,
   onPublish,
@@ -30,6 +32,10 @@ export default function PublishSidebar({
   canPublish,
 }: PublishSidebarProps) {
   const remainingCoins = Math.max(0, availableCoins - coinCost);
+  const isCustomDuration = durationMonths > 1;
+  const durationLabel = isCustomDuration
+    ? `1 bulan + ${additionalWeeks} minggu`
+    : "1 bulan";
 
   return (
     <div className="bg-white border border-line rounded-2xl p-5 sm:p-6 flex flex-col gap-5 shadow-xs">
@@ -51,7 +57,7 @@ export default function PublishSidebar({
         <div className="flex justify-between items-center text-ink-muted">
           <span>Masa tayang</span>
           <span className="font-semibold text-ink">
-            {durationMonths === 1 ? "1 bulan" : `${durationMonths} bulan`}
+            {durationLabel}
           </span>
         </div>
         <div className="flex justify-between items-center text-ink-muted">
@@ -77,7 +83,7 @@ export default function PublishSidebar({
       <div className="bg-[#f0f9f8] border border-teal/20 rounded-xl p-3 flex items-start gap-2">
         <FiInfo className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
         <p className="text-[11px] text-teal-dark leading-relaxed">
-          {coinCost} koin digunakan untuk satu lowongan selama satu bulan, mulai dari tanggal publikasi.
+          {coinCost} koin digunakan untuk satu lowongan selama {durationLabel}, mulai dari tanggal publikasi.
         </p>
       </div>
 

@@ -161,7 +161,7 @@ export default function Navbar() {
                         className="flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-ink hover:text-teal hover:bg-[#F0F8F6] rounded-xl transition-colors"
                       >
                         <FiGrid className="text-[16px] text-teal" />
-                        <span>Buka Dashboard</span>
+                        <span>Dashboard</span>
                       </Link>
 
                       {user.role === "seeker" && (
@@ -172,6 +172,17 @@ export default function Navbar() {
                         >
                           <FiUser className="text-[16px] text-teal" />
                           <span>Cari Lowongan</span>
+                        </Link>
+                      )}
+
+                      {user.role === "seeker" && (
+                        <Link
+                          href="/profile"
+                          onClick={() => setDropdownOpen(false)}
+                          className="flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-ink hover:text-teal hover:bg-[#F0F8F6] rounded-xl transition-colors"
+                        >
+                          <FiUser className="text-[16px] text-teal" />
+                          <span>Profil saya</span>
                         </Link>
                       )}
                     </div>

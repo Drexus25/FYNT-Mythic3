@@ -42,8 +42,8 @@ export default function ApplicantsListContainer({
   };
 
   return (
-    <div className="w-full min-h-screen bg-paper pt-24 pb-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
+    <div className="min-h-screen bg-[#FBFDFD] pt-24 pb-16 px-6 lg:px-14">
+      <div className="max-w-6xl mx-auto flex flex-col gap-6">
         {/* Header */}
         <ApplicantsPageHeader
           jobTitle={jobData.title}
