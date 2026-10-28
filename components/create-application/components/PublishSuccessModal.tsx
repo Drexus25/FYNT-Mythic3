@@ -7,12 +7,14 @@ interface PublishSuccessModalProps {
   jobTitle: string;
   companyName: string;
   remainingCoins: number;
+  usedCoins?: number;
 }
 
 export default function PublishSuccessModal({
   jobTitle,
   companyName,
   remainingCoins,
+  usedCoins = 5,
 }: PublishSuccessModalProps) {
   return (
     <div
@@ -38,7 +40,7 @@ export default function PublishSuccessModal({
 
         {/* Balance Badge */}
         <div className="w-full bg-[#f0f9f8] border border-teal/20 rounded-xl p-3 text-xs text-teal-dark font-medium flex items-center justify-between">
-          <span>Koin terpakai: 5 koin</span>
+          <span>Koin terpakai: {usedCoins} koin</span>
           <span className="font-bold">Sisa saldo: {remainingCoins} koin</span>
         </div>
 

@@ -28,10 +28,17 @@ export default function CreateApplicationContainer() {
   // Form State (initialized completely empty without dummy data)
   const [formData, setFormData] = useState<JobFormData>(INITIAL_JOB_FORM_DATA);
   const [hasAgreed, setHasAgreed] = useState(true);
-  const [availableCoins, setAvailableCoins] = useState(5);
+  const [availableCoins, setAvailableCoins] = useState(10);
   const [isPublishing, setIsPublishing] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
   const [isDraftSaving, setIsDraftSaving] = useState(false);
+
+  // Coin cost calculation:
+  // Base cost = 5 coins for 1 month
+  // If > 1 month, 5 coins + 1 coin per additional week
+  const isCustomDuration = formData.durationMonths > 1;
+  const additionalWeeks = formData.additionalWeeks || 1;
+  const coinCost = isCustomDuration ? 5 + additionalWeeks : 5;
 
   // Field change handler
   const handleFieldChange = (field: string, value: string) => {
@@ -75,6 +82,13 @@ export default function CreateApplicationContainer() {
     }));
   };
 
+  const handleAdditionalWeeksChange = (weeks: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      additionalWeeks: weeks,
+    }));
+  };
+
   // Validation
   const canPublish =
     formData.title.trim().length > 0 &&
@@ -83,14 +97,14 @@ export default function CreateApplicationContainer() {
     formData.location.trim().length > 0 &&
     formData.workplaceType.length > 0 &&
     hasAgreed &&
-    availableCoins >= 5;
+    availableCoins >= coinCost;
 
   // Publish handler
   const handlePublish = () => {
     if (!canPublish) return;
     setIsPublishing(true);
     setTimeout(() => {
-      setAvailableCoins((prev) => Math.max(0, prev - 5));
+      setAvailableCoins((prev) => Math.max(0, prev - coinCost));
       setIsPublishing(false);
       setIsPublished(true);
     }, 600);
@@ -146,7 +160,9 @@ export default function CreateApplicationContainer() {
             {/* 4. Durasi Publikasi */}
             <PublishDurationSection
               durationMonths={formData.durationMonths}
+              additionalWeeks={formData.additionalWeeks}
               onSelectDuration={handleSelectDuration}
+              onAdditionalWeeksChange={handleAdditionalWeeksChange}
             />
           </div>
 
@@ -157,8 +173,9 @@ export default function CreateApplicationContainer() {
               companyName={companyName}
               location={formData.location}
               availableCoins={availableCoins}
-              coinCost={5}
+              coinCost={coinCost}
               durationMonths={formData.durationMonths}
+              additionalWeeks={formData.additionalWeeks}
               hasAgreed={hasAgreed}
               onToggleAgree={() => setHasAgreed((prev) => !prev)}
               onPublish={handlePublish}
@@ -175,6 +192,7 @@ export default function CreateApplicationContainer() {
           jobTitle={formData.title || "Pekerjaan Baru"}
           companyName={companyName}
           remainingCoins={availableCoins}
+          usedCoins={coinCost}
         />
       )}
     </div>

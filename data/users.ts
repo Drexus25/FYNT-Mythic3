@@ -27,7 +27,7 @@ export const DUMMY_USERS: User[] = [
   },
   {
     id: "usr_seeker_01",
-    name: "Budi Pratama",
+    name: "Iqbal Sandika",
     email: "seeker@fynt.id",
     password: "FyntSecure@2026",
     role: "seeker",

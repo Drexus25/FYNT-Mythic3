@@ -48,9 +48,9 @@ export const SEEKER_APPLICATIONS_DATA: SeekerApplication[] = [
     group: "active",
     decisionStage: "Menunggu keputusan",
     submittedDocuments: {
-      cvName: "CV_Ayu_Prameswari.pdf",
-      portfolioName: "Portfolio_Ayu_2026.pdf",
-      portfolioUrl: "ayu.design.example",
+      cvName: "CV_Iqbal_Sandika.pdf",
+      portfolioName: "Portfolio_Iqbal_2026.pdf",
+      portfolioUrl: "Iqbal.design.example",
     },
     timeline: [
       {
@@ -89,8 +89,8 @@ export const SEEKER_APPLICATIONS_DATA: SeekerApplication[] = [
     group: "active",
     decisionStage: "Menunggu keputusan",
     submittedDocuments: {
-      cvName: "CV_Ayu_Prameswari.pdf",
-      portfolioUrl: "ayu.design.example",
+      cvName: "CV_Iqbal_Sandika.pdf",
+      portfolioUrl: "Iqbal.design.example",
     },
     timeline: [
       {
@@ -129,8 +129,8 @@ export const SEEKER_APPLICATIONS_DATA: SeekerApplication[] = [
     group: "active",
     decisionStage: "Menunggu keputusan",
     submittedDocuments: {
-      cvName: "CV_Ayu_Prameswari.pdf",
-      portfolioName: "Portfolio_Ayu_2026.pdf",
+      cvName: "CV_Iqbal_Sandika.pdf",
+      portfolioName: "Portfolio_Iqbal_2026.pdf",
     },
     timeline: [
       {
@@ -169,8 +169,8 @@ export const SEEKER_APPLICATIONS_DATA: SeekerApplication[] = [
     group: "active",
     decisionStage: "Menunggu keputusan",
     submittedDocuments: {
-      cvName: "CV_Ayu_Prameswari.pdf",
-      portfolioName: "Portfolio_Ayu_2026.pdf",
+      cvName: "CV_Iqbal_Sandika.pdf",
+      portfolioName: "Portfolio_Iqbal_2026.pdf",
     },
     timeline: [
       {
@@ -209,8 +209,8 @@ export const SEEKER_APPLICATIONS_DATA: SeekerApplication[] = [
     group: "completed",
     decisionStage: "Diterima",
     submittedDocuments: {
-      cvName: "CV_Ayu_Prameswari.pdf",
-      portfolioUrl: "ayu.design.example",
+      cvName: "CV_Iqbal_Sandika.pdf",
+      portfolioUrl: "Iqbal.design.example",
     },
     timeline: [
       {
@@ -250,8 +250,8 @@ export const SEEKER_APPLICATIONS_DATA: SeekerApplication[] = [
     group: "completed",
     decisionStage: "Tidak diterima",
     submittedDocuments: {
-      cvName: "CV_Ayu_Prameswari.pdf",
-      portfolioName: "Portfolio_Ayu_2026.pdf",
+      cvName: "CV_Iqbal_Sandika.pdf",
+      portfolioName: "Portfolio_Iqbal_2026.pdf",
     },
     timeline: [
       {

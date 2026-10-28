@@ -8,6 +8,7 @@ export interface JobFormData {
   descriptionHtml: string;
   essayQuestions: string[];
   durationMonths: number;
+  additionalWeeks: number;
 }
 
 export const INITIAL_JOB_FORM_DATA: JobFormData = {
@@ -20,6 +21,7 @@ export const INITIAL_JOB_FORM_DATA: JobFormData = {
   descriptionHtml: "",
   essayQuestions: [""], // 1 empty question card ready to be typed in without dummy answers
   durationMonths: 1,
+  additionalWeeks: 1,
 };
 
 export const JOB_CATEGORIES = [

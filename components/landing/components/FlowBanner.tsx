@@ -3,17 +3,17 @@ import Link from "next/link";
 
 export default function FlowBanner() {
     return (
-        <section className="flex flex-col w-full mx-auto gap-12">
+        <section className="flow-section flex flex-col w-full mx-auto gap-12">
             <div className="flex flex-col gap-4 px-12">
-                <div>
+                <div className="flow-heading">
                     <p className="text-[32px] font-semibold">Dari kenalan, jadi kesempatan.</p>
                 </div>
                 <div className="flex flex-row gap-16">
-                    <div className="flex flex-col gap-2">
+                    <div className="flow-step-item flex flex-col gap-2">
                         <p className="text-teal text-[24px]">
                             01
                         </p>
-                        <div className="w-full h-px bg-line"/>
+                        <div className="flow-step-line w-full h-px bg-line"/>
                         <p className="font-semibold text-[20px]">
                             Pilih peranmu
                         </p>
@@ -21,11 +21,11 @@ export default function FlowBanner() {
                             Daftar sebagai pencari kerja atau pembuka lowongan. Bonus koin langsung masuk ke akun.
                         </p>
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flow-step-item flex flex-col gap-2">
                         <p className="text-teal text-[24px]">
                             02
                         </p>
-                        <div className="w-full h-px bg-line"/>
+                        <div className="flow-step-line w-full h-px bg-line"/>
                         <p className="font-semibold text-[20px]">
                             Tunjukkan potensimu
                         </p>
@@ -33,11 +33,11 @@ export default function FlowBanner() {
                             Lengkapi profil dan CV, atau verifikasi perusahaan lalu susun lowongan yang informatif.
                         </p>
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flow-step-item flex flex-col gap-2">
                         <p className="text-teal text-[24px]">
                             03
                         </p>
-                        <div className="w-full h-px bg-line"/>
+                        <div className="flow-step-line w-full h-px bg-line"/>
                         <p className="font-semibold text-[20px]">
                             Mulai koneksi yang tepat
                         </p>
@@ -47,7 +47,7 @@ export default function FlowBanner() {
                     </div>
                 </div>
             </div>
-            <div className="bg-teal flex flex-row justify-between items-center p-8">
+            <div className="flow-cta-banner bg-teal flex flex-row justify-between items-center p-8">
                 <div className="flex flex-col">
                     <p className="text-[28px] text-white font-semibold">Potensimu layak mendapat peluang.</p>
                     <p className="text-[14px] text-line">Mulai perjalanan karier atau bangun tim berikutnya bersama FYNT.</p>

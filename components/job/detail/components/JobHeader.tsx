@@ -1,4 +1,4 @@
-import { FiMapPin, FiBriefcase, FiDollarSign, FiCheckCircle } from "react-icons/fi";
+import { FiMapPin, FiBriefcase, FiDollarSign } from "react-icons/fi";
 import { JobItem } from "@/components/find/data/data";
 
 interface JobHeaderProps {
@@ -21,12 +21,6 @@ export default function JobHeader({ job }: JobHeaderProps) {
           </h2>
           <div className="flex items-center gap-2">
             <span className="text-sm text-ink-muted font-medium">{job.company}</span>
-            {job.isVerified && (
-              <span className="inline-flex items-center gap-1 text-xs text-teal font-semibold bg-teal/10 px-2 py-0.5 rounded-full">
-                <FiCheckCircle className="w-3 h-3" />
-                Terverifikasi
-              </span>
-            )}
           </div>
         </div>
       </div>
