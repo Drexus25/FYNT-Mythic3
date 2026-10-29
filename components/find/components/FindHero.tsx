@@ -1,6 +1,7 @@
 "use client";
 
 import { FiSearch } from "react-icons/fi";
+import Link from "next/link";
 
 interface FindHeroProps {
   searchQuery: string;
@@ -16,8 +17,10 @@ export default function FindHero({
   return (
     <section className="flex flex-col gap-5 pt-8 pb-4">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="text-xs text-ink-muted">
-        <span>Pencari kerja</span>
+      <nav aria-label="Breadcrumb" className="text-[13px] text-ink-muted">
+        <Link href="/find" className="hover:text-teal transition-colors">
+          Pencari kerja
+        </Link>
         <span className="mx-2">/</span>
         <span className="text-ink-soft">Cari lowongan</span>
       </nav>

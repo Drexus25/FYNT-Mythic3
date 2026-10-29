@@ -13,6 +13,7 @@ interface JobInfoSectionProps {
   location: string;
   workplaceType: string;
   salary: string;
+  slot: number;
   onChange: (field: string, value: string) => void;
 }
 
@@ -23,6 +24,7 @@ export default function JobInfoSection({
   location,
   workplaceType,
   salary,
+  slot,
   onChange,
 }: JobInfoSectionProps) {
   return (
@@ -161,19 +163,38 @@ export default function JobInfoSection({
           </div>
         </div>
 
-        {/* Rentang Gaji */}
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="job-salary" className="text-xs font-semibold text-ink">
-            Rentang gaji / bulan
-          </label>
-          <input
-            id="job-salary"
-            type="text"
-            value={salary}
-            onChange={(e) => onChange("salary", e.target.value)}
-            placeholder="Contoh: Rp8–12 juta"
-            className="w-full px-3.5 py-2.5 rounded-xl border border-line text-ink text-xs sm:text-sm placeholder:text-ink-muted/50 focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-all"
-          />
+        {/* Rentang Gaji & Jumlah Slot */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Rentang Gaji */}
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="job-salary" className="text-xs font-semibold text-ink">
+              Rentang gaji / bulan
+            </label>
+            <input
+              id="job-salary"
+              type="text"
+              value={salary}
+              onChange={(e) => onChange("salary", e.target.value)}
+              placeholder="Contoh: Rp8–12 juta"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-line text-ink text-xs sm:text-sm placeholder:text-ink-muted/50 focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-all"
+            />
+          </div>
+
+          {/* Jumlah Slot */}
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="job-slot" className="text-xs font-semibold text-ink">
+              Jumlah slot <span className="text-danger">*</span>
+            </label>
+            <input
+              id="job-slot"
+              type="number"
+              min={1}
+              value={slot}
+              onChange={(e) => onChange("slot", e.target.value)}
+              placeholder="Contoh: 3"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-line text-ink text-xs sm:text-sm placeholder:text-ink-muted/50 focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-all"
+            />
+          </div>
         </div>
       </div>
     </div>

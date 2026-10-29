@@ -44,7 +44,7 @@ export default function CreateApplicationContainer() {
   const handleFieldChange = (field: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      [field]: value,
+      [field]: field === "slot" ? Math.max(1, parseInt(value, 10) || 1) : value,
     }));
   };
 
@@ -140,6 +140,7 @@ export default function CreateApplicationContainer() {
               location={formData.location}
               workplaceType={formData.workplaceType}
               salary={formData.salary}
+              slot={formData.slot}
               onChange={handleFieldChange}
             />
 

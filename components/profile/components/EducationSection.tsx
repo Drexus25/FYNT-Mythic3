@@ -39,15 +39,27 @@ export default function EducationSection({
             {editingId === edu.id ? (
               /* Edit mode */
               <div className="flex flex-col gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="text-xs font-semibold text-ink">Gelar / Program studi</label>
-                  <input
-                    type="text"
-                    value={edu.degree}
-                    onChange={(e) => onUpdate(edu.id, "degree", e.target.value)}
-                    placeholder="Contoh: S1 Desain Komunikasi Visual"
-                    className={inputClass}
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-semibold text-ink">Gelar / Jenjang</label>
+                    <input
+                      type="text"
+                      value={edu.degree}
+                      onChange={(e) => onUpdate(edu.id, "degree", e.target.value)}
+                      placeholder="Contoh: S1, D3, SMA/SMK"
+                      className={inputClass}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-semibold text-ink">Jurusan / Program Studi</label>
+                    <input
+                      type="text"
+                      value={edu.major}
+                      onChange={(e) => onUpdate(edu.id, "major", e.target.value)}
+                      placeholder="Contoh: Desain Komunikasi Visual"
+                      className={inputClass}
+                    />
+                  </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div className="flex flex-col gap-1">
@@ -96,7 +108,11 @@ export default function EducationSection({
               /* View mode */
               <div className="flex items-start justify-between gap-3">
                 <div className="flex flex-col gap-0.5">
-                  <p className="text-sm font-semibold text-ink">{edu.degree}</p>
+                  <p className="text-sm font-semibold text-ink">
+                    {edu.degree && edu.major
+                      ? `${edu.degree} · ${edu.major}`
+                      : edu.degree || edu.major || "Pendidikan"}
+                  </p>
                   <p className="text-xs text-ink-muted">
                     {edu.institution} · {edu.period}
                   </p>
