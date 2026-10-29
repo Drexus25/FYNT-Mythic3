@@ -7,13 +7,15 @@ import {
   SeekerProfile,
   WorkExperience,
   Education,
+  ProfileDocument,
   INITIAL_SEEKER_PROFILE,
 } from "../data/profileTypes";
 import ProfileSidebar from "../components/ProfileSidebar";
 import PersonalInfoSection from "../components/PersonalInfoSection";
 import WorkExperienceSection from "../components/WorkExperienceSection";
 import EducationSection from "../components/EducationSection";
-import DocumentsSection from "../components/DocumentsSection";
+import CvSection from "../components/CvSection";
+import PortfolioSection from "../components/PortfolioSection";
 
 export default function ProfileContainer() {
   const [profile, setProfile] = useState<SeekerProfile>(INITIAL_SEEKER_PROFILE);
@@ -70,6 +72,7 @@ export default function ProfileContainer() {
     const newEdu: Education = {
       id: `edu_${Date.now()}`,
       degree: "",
+      major: "",
       institution: "",
       period: "",
     };
@@ -103,6 +106,39 @@ export default function ProfileContainer() {
     setIsSaved(false);
   };
 
+  // ── Documents (CV & Portofolio) ───────────────────────────────────────────
+  const handleUploadDocument = (type: "cv" | "portfolio", file: File) => {
+    const sizeInMb =
+      (file.size / (1024 * 1024)).toFixed(1).replace(".", ",") + " MB";
+    const now = new Intl.DateTimeFormat("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }).format(new Date());
+
+    const newDoc: ProfileDocument = {
+      id: `doc_${type}_${Date.now()}`,
+      name: file.name,
+      type,
+      size: sizeInMb,
+      updatedAt: now,
+    };
+
+    setProfile((prev) => ({
+      ...prev,
+      documents: [...prev.documents.filter((d) => d.type !== type), newDoc],
+    }));
+    setIsSaved(false);
+  };
+
+  const handleRemoveDocument = (id: string) => {
+    setProfile((prev) => ({
+      ...prev,
+      documents: prev.documents.filter((doc) => doc.id !== id),
+    }));
+    setIsSaved(false);
+  };
+
   // ── Save ──────────────────────────────────────────────────────────────────
   const handleSave = () => {
     setIsSaving(true);
@@ -118,23 +154,25 @@ export default function ProfileContainer() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-paper pt-24 pb-20">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
+    <div className="w-full min-h-screen bg-paper pt-32 pb-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
 
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-1.5 text-xs text-ink-muted" aria-label="Breadcrumb">
-          <Link href="/find" className="hover:text-teal transition-colors">Pencari kerja</Link>
-          <FiChevronRight className="w-3.5 h-3.5 shrink-0" />
-          <span className="text-ink font-medium">Profil saya</span>
-        </nav>
+        <nav aria-label="Breadcrumb" className="text-[13px] text-ink-muted">
+        <Link href="/find" className="hover:text-teal transition-colors">
+          Pencari kerja
+        </Link>
+        <span className="mx-2">/</span>
+        <span className="text-ink-soft">Profil saya</span>
+      </nav>
 
         {/* Page Header */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-ink tracking-tight">
+          <div className="flex flex-col gap-2 max-w-4xl">
+            <h1 className="text-3xl md:text-4xl text-ink tracking-tight">
               Profil yang mewakili potensimu.
             </h1>
-            <p className="text-sm text-ink-muted mt-1">
+            <p className="text-sm md:text-base text-ink-muted leading-relaxed">
               Perbarui cerita, keahlian, dan karya terbaikmu untuk perusahaan.
             </p>
           </div>
@@ -182,6 +220,8 @@ export default function ProfileContainer() {
               professionalTitle={profile.professionalTitle}
               email={profile.email}
               phone={profile.phone}
+              gender={profile.gender}
+              birthDate={profile.birthDate}
               domicile={profile.domicile}
               about={profile.about}
               onChange={handleFieldChange}
@@ -203,12 +243,26 @@ export default function ProfileContainer() {
               onRemove={handleRemoveEducation}
             />
 
-            {/* 4. CV & Portofolio */}
-            <DocumentsSection
-              documents={profile.documents}
+            {/* 4. Curriculum Vitae (CV) */}
+            <CvSection
+              cvDocument={profile.documents.find((d) => d.type === "cv")}
+              onUploadCv={(file) => handleUploadDocument("cv", file)}
+              onRemoveCv={handleRemoveDocument}
+            />
+
+            {/* 5. Portofolio */}
+            <PortfolioSection
               portfolioLink={profile.portfolioLink}
-              onPortfolioLinkChange={(val) => handleFieldChange("portfolioLink", val)}
-              onReplaceDocument={() => {}}
+              portfolioDocument={profile.documents.find(
+                (d) => d.type === "portfolio"
+              )}
+              onPortfolioLinkChange={(val) =>
+                handleFieldChange("portfolioLink", val)
+              }
+              onUploadPortfolio={(file) =>
+                handleUploadDocument("portfolio", file)
+              }
+              onRemovePortfolio={handleRemoveDocument}
             />
           </div>
         </div>
@@ -237,4 +291,4 @@ export default function ProfileContainer() {
       </div>
     </div>
   );
-}
+}

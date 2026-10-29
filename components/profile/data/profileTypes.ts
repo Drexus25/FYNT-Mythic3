@@ -9,6 +9,7 @@ export interface WorkExperience {
 export interface Education {
   id: string;
   degree: string;
+  major: string;
   institution: string;
   period: string;
 }
@@ -26,6 +27,8 @@ export interface SeekerProfile {
   professionalTitle: string;
   email: string;
   phone: string;
+  gender: string;
+  birthDate: string;
   domicile: string;
   about: string;
   avatar: string;
@@ -40,6 +43,8 @@ export const INITIAL_SEEKER_PROFILE: SeekerProfile = {
   professionalTitle: "Product Designer",
   email: "ayu.prameswari@email.com",
   phone: "0812 3456 7890",
+  gender: "Perempuan",
+  birthDate: "1998-05-14",
   domicile: "Jakarta Selatan, Indonesia",
   about:
     "Product Designer dengan pengalaman lebih dari dua tahun merancang pengalaman web dan mobile. Saya senang menghubungkan kebutuhan pengguna dan tujuan bisnis melalui riset, prototyping, serta kolaborasi yang terbuka.",
@@ -66,7 +71,8 @@ export const INITIAL_SEEKER_PROFILE: SeekerProfile = {
   educations: [
     {
       id: "edu_01",
-      degree: "S1 Desain Komunikasi Visual",
+      degree: "S1",
+      major: "Desain Komunikasi Visual",
       institution: "Universitas Cakrawala",
       period: "2019–2023",
     },

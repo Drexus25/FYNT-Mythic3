@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { TbHexagonLetterF } from "react-icons/tb";
-import { FiChevronDown, FiLogOut, FiGrid, FiUser } from "react-icons/fi";
+import { FiChevronDown, FiLogOut, FiGrid, FiUser, FiSearch } from "react-icons/fi";
 import LogoFYNT from "@/public/shared/logo-fynt-clean.svg";
 import { getCurrentUser, logoutUser, User } from "@/data/users";
 
@@ -94,15 +94,16 @@ export default function Navbar() {
             /* Logged in state */
             <div className="flex items-center gap-3">
               {/* Coin Badge */}
-              <div
-                title="Saldo Koin FYNT"
+              <Link
+                href="/balance"
+                title="Lihat saldo koin"
                 className="flex items-center gap-2 px-3.5 py-1.5 bg-[#EEF7F5] text-[#10766B] rounded-full text-[13px] font-semibold transition-all shadow-2xs hover:bg-[#10766B] hover:text-white cursor-pointer"
               >
                 <TbHexagonLetterF className="text-[15px]" />
                 <span className="font-rethink-sans">
                   {user.coins ?? 5} Koin
                 </span>
-              </div>
+              </Link>
 
               <p className="text-line text-2xl"> | </p>
 
@@ -170,7 +171,7 @@ export default function Navbar() {
                           onClick={() => setDropdownOpen(false)}
                           className="flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-ink hover:text-teal hover:bg-[#F0F8F6] rounded-xl transition-colors"
                         >
-                          <FiUser className="text-[16px] text-teal" />
+                          <FiSearch className="text-[16px] text-teal" />
                           <span>Cari Lowongan</span>
                         </Link>
                       )}

@@ -37,13 +37,7 @@ export const RECRUITER_METRICS_DATA: DashboardMetric[] = [
     label: "Dalam tinjauan",
     value: 3,
     iconType: "document",
-  },
-  {
-    id: "coin-balance",
-    label: "Saldo koin",
-    value: 5,
-    iconType: "coin",
-  },
+  }
 ];
 
 export const COMPANY_JOBS_DATA: CompanyJob[] = [
