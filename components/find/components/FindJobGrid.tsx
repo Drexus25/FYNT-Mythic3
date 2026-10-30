@@ -10,6 +10,9 @@ interface FindJobGridProps {
   sortBy: string;
   onSortChange: (sort: string) => void;
   onResetSearch?: () => void;
+  isLoading?: boolean;
+  isError?: boolean;
+  onRetry?: () => void;
 }
 
 export default function FindJobGrid({
@@ -17,6 +20,9 @@ export default function FindJobGrid({
   sortBy,
   onSortChange,
   onResetSearch,
+  isLoading = false,
+  isError = false,
+  onRetry,
 }: FindJobGridProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -86,16 +92,58 @@ export default function FindJobGrid({
       </div>
 
       {/* Grid of Job Cards */}
-      {jobs.length > 0 ? (
+      {isLoading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              className="flex flex-col w-full h-[220px] gap-4 p-5 bg-white border border-line rounded-3xl animate-pulse"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-md bg-gray-200" />
+                <div className="h-4 w-32 bg-gray-200 rounded" />
+              </div>
+              <div className="flex flex-col gap-2 flex-1 mt-1">
+                <div className="h-5 w-3/4 bg-gray-200 rounded" />
+                <div className="h-3.5 w-1/2 bg-gray-200 rounded" />
+                <div className="h-4 w-1/3 bg-gray-200 rounded mt-1" />
+              </div>
+              <div className="w-full bg-line h-px" />
+              <div className="flex justify-between items-center">
+                <div className="h-6 w-20 bg-gray-200 rounded-full" />
+                <div className="h-3.5 w-24 bg-gray-200 rounded" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : jobs.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {jobs.map((job) => (
             <JobCard key={job.id} {...job} />
           ))}
         </div>
+      ) : isError ? (
+        <div className="flex flex-col items-center justify-center py-16 bg-white border border-line rounded-2xl text-center px-4">
+          <p className="text-lg font-semibold text-rose-600">
+            Gagal memuat lowongan
+          </p>
+          <p className="text-sm text-ink-muted mt-1 max-w-sm">
+            Terjadi kesalahan saat memuat data lowongan dari server.
+          </p>
+          {onRetry && (
+            <button
+              type="button"
+              onClick={onRetry}
+              className="mt-4 px-4 py-2 bg-teal text-white text-xs font-semibold rounded-lg hover:bg-teal-dark transition-all cursor-pointer"
+            >
+              Coba Lagi
+            </button>
+          )}
+        </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-16 bg-white border border-line rounded-2xl text-center px-4">
           <p className="text-lg font-semibold text-ink">
-            Tidak ada lowongan yang cocok
+            Tidak ada lowongan yang ditemukan
           </p>
           <p className="text-sm text-ink-muted mt-1 max-w-sm">
             Coba gunakan kata kunci lain seperti posisi pekerjaan, keahlian, atau nama perusahaan.
@@ -103,7 +151,7 @@ export default function FindJobGrid({
           {onResetSearch && (
             <button
               onClick={onResetSearch}
-              className="mt-4 px-4 py-2 bg-teal text-white text-xs font-semibold rounded-lg hover:bg-teal-dark transition-all"
+              className="mt-4 px-4 py-2 bg-teal text-white text-xs font-semibold rounded-lg hover:bg-teal-dark transition-all cursor-pointer"
             >
               Hapus Filter Pencarian
             </button>

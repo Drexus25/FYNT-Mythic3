@@ -6,6 +6,7 @@ export interface JobFormData {
   workplaceType: string;
   salary: string;
   slot: number;
+  isUnlimitedSlot: boolean;
   descriptionHtml: string;
   essayQuestions: string[];
   durationMonths: number;
@@ -20,6 +21,7 @@ export const INITIAL_JOB_FORM_DATA: JobFormData = {
   workplaceType: "",
   salary: "",
   slot: 1,
+  isUnlimitedSlot: false,
   descriptionHtml: "",
   essayQuestions: [""], // 1 empty question card ready to be typed in without dummy answers
   durationMonths: 1,

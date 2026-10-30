@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { TbHexagonLetterF } from "react-icons/tb";
-import { FiChevronDown, FiLogOut, FiGrid, FiUser, FiSearch } from "react-icons/fi";
+import { FiChevronDown, FiLogOut, FiGrid, FiUser, FiSearch, FiBriefcase } from "react-icons/fi";
 import LogoFYNT from "@/public/shared/logo-fynt-clean.svg";
 import { getCurrentUser, logoutUser, User } from "@/data/users";
 
@@ -184,6 +184,17 @@ export default function Navbar() {
                         >
                           <FiUser className="text-[16px] text-teal" />
                           <span>Profil saya</span>
+                        </Link>
+                      )}
+
+                      {user.role === "recruiter" && (
+                        <Link
+                          href="/company"
+                          onClick={() => setDropdownOpen(false)}
+                          className="flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-ink hover:text-teal hover:bg-[#F0F8F6] rounded-xl transition-colors"
+                        >
+                          <FiBriefcase className="text-[16px] text-teal" />
+                          <span>Profil perusahaan</span>
                         </Link>
                       )}
                     </div>

@@ -4,18 +4,20 @@ import { useState } from "react";
 import { FiSearch, FiChevronRight } from "react-icons/fi";
 import { Applicant, ApplicantStatus } from "../data/applicantsData";
 
-type TabFilter = "all" | "not-reviewed" | "shortlist" | "rejected";
+type TabFilter = "all" | "not-reviewed" | "reviewed" | "accepted" | "rejected";
 
 interface ApplicantsListPanelProps {
   applicants: Applicant[];
   selectedId: string;
   onSelectApplicant: (id: string) => void;
+  onUpdateStatus?: (id: string, status: ApplicantStatus) => void;
 }
 
 export default function ApplicantsListPanel({
   applicants,
   selectedId,
   onSelectApplicant,
+  onUpdateStatus,
 }: ApplicantsListPanelProps) {
   const [activeTab, setActiveTab] = useState<TabFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,13 +27,15 @@ export default function ApplicantsListPanel({
   // Count by status
   const total = applicants.length;
   const notReviewedCount = applicants.filter((a) => a.status === "Not Reviewed").length;
-  const shortlistCount = applicants.filter((a) => a.status === "Shortlist").length;
+  const reviewedCount = applicants.filter((a) => a.status === "Reviewed").length;
+  const acceptedCount = applicants.filter((a) => a.status === "Accepted").length;
   const rejectedCount = applicants.filter((a) => a.status === "Rejected").length;
 
   // Filter by tab
   const tabFiltered = applicants.filter((a) => {
     if (activeTab === "not-reviewed") return a.status === "Not Reviewed";
-    if (activeTab === "shortlist") return a.status === "Shortlist";
+    if (activeTab === "reviewed") return a.status === "Reviewed";
+    if (activeTab === "accepted") return a.status === "Accepted";
     if (activeTab === "rejected") return a.status === "Rejected";
     return true;
   });
@@ -51,31 +55,40 @@ export default function ApplicantsListPanel({
   const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
   const statusBadge = (status: ApplicantStatus) => {
-    if (status === "Shortlist") {
-      return (
-        <span className="text-[10px] font-semibold text-teal bg-teal/10 px-2 py-0.5 rounded-full">
-          Shortlist
-        </span>
-      );
+    switch (status) {
+      case "Accepted":
+        return (
+          <span className="text-[10px] font-semibold text-teal bg-teal/10 px-2 py-0.5 rounded-full border border-teal/20">
+            Accepted
+          </span>
+        );
+      case "Rejected":
+        return (
+          <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">
+            Rejected
+          </span>
+        );
+      case "Reviewed":
+        return (
+          <span className="text-[10px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
+            Reviewed
+          </span>
+        );
+      case "Not Reviewed":
+      default:
+        return (
+          <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+            Not Reviewed
+          </span>
+        );
     }
-    if (status === "Rejected") {
-      return (
-        <span className="text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full">
-          Rejected
-        </span>
-      );
-    }
-    return (
-      <span className="text-[10px] font-semibold text-teal bg-teal/10 px-2 py-0.5 rounded-full">
-        Not Reviewed
-      </span>
-    );
   };
 
   const tabs = [
     { key: "all" as TabFilter, label: `Semua (${total})` },
     { key: "not-reviewed" as TabFilter, label: `Not Reviewed (${notReviewedCount})` },
-    { key: "shortlist" as TabFilter, label: `Shortlist (${shortlistCount})` },
+    { key: "reviewed" as TabFilter, label: `Reviewed (${reviewedCount})` },
+    { key: "accepted" as TabFilter, label: `Accepted (${acceptedCount})` },
     { key: "rejected" as TabFilter, label: `Rejected (${rejectedCount})` },
   ];
 

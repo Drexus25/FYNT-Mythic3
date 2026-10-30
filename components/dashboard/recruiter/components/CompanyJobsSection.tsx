@@ -18,7 +18,6 @@ export default function CompanyJobsSection({ jobs }: CompanyJobsSectionProps) {
     Semua: jobs.length,
     Aktif: jobs.filter((j) => j.status === "Aktif").length,
     Tutup: jobs.filter((j) => j.status === "Tutup").length,
-    Draf: jobs.filter((j) => j.status === "Draf").length,
   };
 
   const filteredJobs = jobs.filter((job) => {
@@ -40,12 +39,6 @@ export default function CompanyJobsSection({ jobs }: CompanyJobsSectionProps) {
             Tutup
           </span>
         );
-      case "Draf":
-        return (
-          <span className="inline-block px-3 py-0.5 bg-[#F1F3F4] text-[#5F6368] text-[12px] font-medium rounded-full">
-            Draf
-          </span>
-        );
     }
   };
 
@@ -63,7 +56,7 @@ export default function CompanyJobsSection({ jobs }: CompanyJobsSectionProps) {
 
       {/* Filter Tabs */}
       <div className="flex flex-wrap items-center gap-1.5">
-        {(["Semua", "Aktif", "Tutup", "Draf"] as const).map((tab) => {
+        {(["Semua", "Aktif", "Tutup"] as const).map((tab) => {
           const isActive = activeTab === tab;
           return (
             <button

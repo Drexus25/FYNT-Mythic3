@@ -1,4 +1,4 @@
-export type JobStatus = "Aktif" | "Tutup" | "Draf";
+export type JobStatus = "Aktif" | "Tutup";
 
 export interface CompanyJob {
   id: string;
@@ -62,27 +62,5 @@ export const COMPANY_JOBS_DATA: CompanyJob[] = [
     activePeriod: "2 Okt – 2 Nov 2026",
     actionText: "Lihat pelamar",
     actionHref: "/recruiter/job/inovation-officer",
-  },
-  {
-    id: "job-3",
-    title: "UX Researcher",
-    employmentType: "Full-time",
-    workplaceType: "Hybrid",
-    status: "Draf",
-    applicantsCount: null,
-    activePeriod: "Belum dipublikasikan",
-    actionText: "Lanjut edit",
-    actionHref: "/recruiter/dashboard/jobs/ux-researcher/edit",
-  },
-  {
-    id: "job-4",
-    title: "Content Designer",
-    employmentType: "Kontrak",
-    workplaceType: "Remote",
-    status: "Draf",
-    applicantsCount: null,
-    activePeriod: "Belum dipublikasikan",
-    actionText: "Lanjut edit",
-    actionHref: "/recruiter/dashboard/jobs/content-designer/edit",
   },
 ];

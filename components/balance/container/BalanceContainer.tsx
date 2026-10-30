@@ -3,11 +3,6 @@
 import { useCurrentUser } from "@/data/users";
 import BalanceHeader from "../components/BalanceHeader";
 import CoinCard from "../components/CoinCard";
-import TransactionHistorySection from "../components/TransactionHistorySection";
-import {
-  SEEKER_TRANSACTIONS,
-  RECRUITER_TRANSACTIONS,
-} from "../data/balanceTypes";
 import Link from "next/link";
 
 export default function BalanceContainer() {
@@ -39,9 +34,6 @@ export default function BalanceContainer() {
   const coins = user.coins ?? 0;
   const firstName = user.name.trim().split(" ")[0];
 
-  const transactions =
-    role === "recruiter" ? RECRUITER_TRANSACTIONS : SEEKER_TRANSACTIONS;
-
   const handleTopUp = (amount: number) => {
     // TODO: integrate real payment gateway
     console.log(`Proceed to top up ${amount} coins`);
@@ -57,9 +49,6 @@ export default function BalanceContainer() {
 
         {/* Coin card with embedded top-up */}
         <CoinCard coins={coins} role={role} onProceed={handleTopUp} />
-
-        {/* Bottom section: TransactionHistory*/}
-          <TransactionHistorySection transactions={transactions} role={role} />
       </div>
     </div>
   );

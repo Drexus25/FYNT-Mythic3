@@ -3,6 +3,7 @@ import { JobCardProps } from "@/components/shared/JobCard";
 export const HIGHLIGHTED_JOBS: JobCardProps[] = [
   {
     id: 1,
+    slug: "senior-frontend-engineer-stripe",
     title: "Senior Frontend Engineer",
     company: "Stripe",
     location: "San Francisco, CA · Remote",
@@ -17,6 +18,7 @@ export const HIGHLIGHTED_JOBS: JobCardProps[] = [
   },
   {
     id: 2,
+    slug: "product-designer-notion",
     title: "Product Designer",
     company: "Notion",
     location: "New York, NY · Hybrid",
@@ -31,6 +33,7 @@ export const HIGHLIGHTED_JOBS: JobCardProps[] = [
   },
   {
     id: 3,
+    slug: "staff-backend-engineer-linear",
     title: "Staff Backend Engineer",
     company: "Linear",
     location: "Remote · Worldwide",
@@ -45,6 +48,7 @@ export const HIGHLIGHTED_JOBS: JobCardProps[] = [
   },
   {
     id: 4,
+    slug: "ai-ml-research-engineer-anthropic",
     title: "AI/ML Research Engineer",
     company: "Anthropic",
     location: "San Francisco, CA · Hybrid",
@@ -59,6 +63,7 @@ export const HIGHLIGHTED_JOBS: JobCardProps[] = [
   },
   {
     id: 5,
+    slug: "devops-platform-engineer-vercel",
     title: "DevOps Platform Engineer",
     company: "Vercel",
     location: "Remote · US",
@@ -73,6 +78,7 @@ export const HIGHLIGHTED_JOBS: JobCardProps[] = [
   },
   {
     id: 6,
+    slug: "ux-researcher-figma",
     title: "UX Researcher",
     company: "Figma",
     location: "San Francisco, CA · Remote",
