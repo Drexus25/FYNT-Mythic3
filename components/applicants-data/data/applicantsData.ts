@@ -1,4 +1,4 @@
-export type ApplicantStatus = "Not Reviewed" | "Shortlist" | "Rejected";
+export type ApplicantStatus = "Not Reviewed" | "Reviewed" | "Accepted" | "Rejected";
 
 export interface ApplicantDocument {
   name: string;
@@ -104,7 +104,7 @@ export const APPLICANTS_DATA: JobWithApplicants[] = [
         experience: "4 tahun",
         location: "Bandung",
         appliedDate: "12 Okt 2026",
-        status: "Shortlist",
+        status: "Reviewed",
         email: "fajar.mahendra@email.com",
         phone: "0821 3456 7890",
         summary:
@@ -279,7 +279,7 @@ export const APPLICANTS_DATA: JobWithApplicants[] = [
         experience: "5 tahun",
         location: "Jakarta Selatan",
         appliedDate: "11 Okt 2026",
-        status: "Shortlist",
+        status: "Accepted",
         email: "aditya.wicaksono@email.com",
         phone: "0811 3456 7890",
         summary:

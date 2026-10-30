@@ -2,7 +2,7 @@ import Link from "next/link";
 import { TbHexagonLetterF } from "react-icons/tb";
 
 export interface JobCardProps {
-  id: number;
+  id: number | string;
   logo: string;
   logoColor: string;
   company: string;
@@ -66,7 +66,11 @@ export default function JobCard({
   );
 
   if (slug) {
-    return <Link href={`/job/${slug}`}>{cardContent}</Link>;
+    return (
+      <Link href={`/job/${slug}`} className="block h-full">
+        {cardContent}
+      </Link>
+    );
   }
 
   return cardContent;

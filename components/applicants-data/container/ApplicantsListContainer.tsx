@@ -58,6 +58,7 @@ export default function ApplicantsListContainer({
               applicants={applicants}
               selectedId={selectedId}
               onSelectApplicant={(id) => setSelectedId(id)}
+              onUpdateStatus={handleUpdateStatus}
             />
           </div>
 

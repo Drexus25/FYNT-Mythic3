@@ -31,7 +31,6 @@ export default function CreateApplicationContainer() {
   const [availableCoins, setAvailableCoins] = useState(10);
   const [isPublishing, setIsPublishing] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
-  const [isDraftSaving, setIsDraftSaving] = useState(false);
 
   // Coin cost calculation:
   // Base cost = 5 coins for 1 month
@@ -41,7 +40,7 @@ export default function CreateApplicationContainer() {
   const coinCost = isCustomDuration ? 5 + additionalWeeks : 5;
 
   // Field change handler
-  const handleFieldChange = (field: string, value: string) => {
+  const handleFieldChange = (field: string, value: any) => {
     setFormData((prev) => ({
       ...prev,
       [field]: field === "slot" ? Math.max(1, parseInt(value, 10) || 1) : value,
@@ -110,23 +109,11 @@ export default function CreateApplicationContainer() {
     }, 600);
   };
 
-  // Save draft handler
-  const handleSaveDraft = () => {
-    setIsDraftSaving(true);
-    setTimeout(() => {
-      setIsDraftSaving(false);
-      alert("Draf lowongan berhasil disimpan!");
-    }, 400);
-  };
-
   return (
     <div className="w-full min-h-screen bg-paper pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6">
         {/* Top Header & Breadcrumb */}
-        <CreateJobHeader
-          onSaveDraft={handleSaveDraft}
-          isDraftSaving={isDraftSaving}
-        />
+        <CreateJobHeader />
 
         {/* Two-Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 items-start">
@@ -141,6 +128,7 @@ export default function CreateApplicationContainer() {
               workplaceType={formData.workplaceType}
               salary={formData.salary}
               slot={formData.slot}
+              isUnlimitedSlot={formData.isUnlimitedSlot}
               onChange={handleFieldChange}
             />
 

@@ -4,12 +4,80 @@ import { useState, useMemo } from "react";
 import FindHero from "../components/FindHero";
 import FindJobGrid from "../components/FindJobGrid";
 import FindPagination from "../components/FindPagination";
-import { DUMMY_JOBS } from "../data/data";
+import { JobItem } from "../data/data";
+import { useJobs } from "@/repository/jobs";
+import { DTOJobsResponses } from "@/repository/jobs/dto";
 
 const ITEMS_PER_PAGE = 6;
 
 interface FindContainerProps {
   initialQuery?: string;
+}
+
+const LOGO_COLORS = [
+  "bg-[#0D6E66]",
+  "bg-indigo-600",
+  "bg-emerald-600",
+  "bg-amber-600",
+  "bg-rose-600",
+  "bg-violet-600",
+  "bg-teal-600",
+];
+
+function transformApiJobToJobItem(apiJob: DTOJobsResponses, index: number): JobItem {
+  const company =
+    (apiJob as unknown as { company_name?: string; company?: string }).company_name ||
+    (apiJob as unknown as { company_name?: string; company?: string }).company ||
+    "Perusahaan";
+
+  const initials =
+    company
+      .split(/\s+/)
+      .map((w: string) => w[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase() || "FY";
+
+  const logoColor = LOGO_COLORS[index % LOGO_COLORS.length];
+
+  // Format closing date if available
+  let formattedClosingDate = apiJob.closing_date;
+  if (apiJob.closing_date) {
+    try {
+      const d = new Date(apiJob.closing_date);
+      if (!isNaN(d.getTime())) {
+        formattedClosingDate = d.toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        });
+      }
+    } catch {
+      // keep fallback
+    }
+  }
+
+  const slug = `${apiJob.position ? apiJob.position.toLowerCase().replace(/[^a-z0-9]+/g, "-") : "job"}-${apiJob.id}`;
+
+  return {
+    id: apiJob.id,
+    slug,
+    title: apiJob.position || "Lowongan Pekerjaan",
+    company,
+    logo: initials,
+    logoColor,
+    location: apiJob.location || "Indonesia",
+    type: `${apiJob.employment || "Full-time"} · ${apiJob.workplace || "Hybrid"}`,
+    workplaceType: (apiJob.workplace as "Hybrid" | "Remote" | "On-site") || "Hybrid",
+    employmentType: apiJob.employment || "Full-time",
+    salary: apiJob.salary_desc || "Gaji Kompetitif",
+    slotsfilled: apiJob.filled_slot ?? 0,
+    slotsTotal: apiJob.slot ?? 1,
+    coinCost: apiJob.coin_applyment ?? 1,
+    closingDate: formattedClosingDate || "Segera",
+    description: apiJob.jobdesc || "",
+    tags: [apiJob.employment, apiJob.workplace].filter(Boolean) as string[],
+  };
 }
 
 export default function FindContainer({ initialQuery = "" }: FindContainerProps) {
@@ -18,9 +86,26 @@ export default function FindContainer({ initialQuery = "" }: FindContainerProps)
   const [sortBy, setSortBy] = useState("relevance");
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Fetch real jobs from /api/v1/jobs endpoint
+  const { data: jobsResponse, isLoading, isError, refetch } = useJobs();
+
+  // Map API jobs only
+  const baseJobs: JobItem[] = useMemo(() => {
+    if (
+      jobsResponse?.data &&
+      Array.isArray(jobsResponse.data) &&
+      jobsResponse.data.length > 0
+    ) {
+      return jobsResponse.data.map((job, idx) =>
+        transformApiJobToJobItem(job, idx)
+      );
+    }
+    return [];
+  }, [jobsResponse]);
+
   // Filter jobs based on search query
   const filteredJobs = useMemo(() => {
-    let result = [...DUMMY_JOBS];
+    let result = [...baseJobs];
 
     if (appliedSearch.trim()) {
       const q = appliedSearch.toLowerCase().trim();
@@ -55,7 +140,7 @@ export default function FindContainer({ initialQuery = "" }: FindContainerProps)
     }
 
     return result;
-  }, [appliedSearch, sortBy]);
+  }, [baseJobs, appliedSearch, sortBy]);
 
   // Pagination calculation
   const totalItems = filteredJobs.length;
@@ -104,16 +189,21 @@ export default function FindContainer({ initialQuery = "" }: FindContainerProps)
             setCurrentPage(1);
           }}
           onResetSearch={handleResetSearch}
+          isLoading={isLoading}
+          isError={isError}
+          onRetry={() => refetch()}
         />
 
-        <FindPagination
-          currentPage={validPage}
-          totalPages={totalPages}
-          startItem={startItem}
-          endItem={endItem}
-          totalItems={totalItems}
-          onPageChange={setCurrentPage}
-        />
+        {!isLoading && totalItems > 0 && (
+          <FindPagination
+            currentPage={validPage}
+            totalPages={totalPages}
+            startItem={startItem}
+            endItem={endItem}
+            totalItems={totalItems}
+            onPageChange={setCurrentPage}
+          />
+        )}
       </div>
     </div>
   );
